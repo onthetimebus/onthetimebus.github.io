@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bench & Books</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eceef5;
+    --paper-dark: #e0e5ec;
+    --ink: #1a1e28;
+    --ink-mid: #2a2e3a;
+    --ink-light: #556068;
+    --teal: #2a5f82;
+    --teal-light: #3d85b0;
+    --teal-dim: rgba(42,95,130,0.08);
+    --rule: #c4ccd8;
+    --grid: rgba(42,80,120,0.07);
+    --margin: #d4dae4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--ink);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--paper);
+    border-bottom: 2px solid var(--ink);
+    padding: 0 2rem 0 0;
+    display: flex; align-items: stretch; height: 54px;
+  }
+
+  .nav-brand {
+    display: flex; align-items: center;
+    background: var(--ink); color: var(--paper);
+    padding: 0 1.8rem;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem; font-style: italic;
+    text-decoration: none; letter-spacing: 0.01em;
+    margin-right: 2rem; white-space: nowrap;
+  }
+
+  .nav-links { display: flex; gap: 0; list-style: none; align-items: center; flex: 1; }
+  .nav-links a {
+    font-family: 'Inconsolata', monospace; font-size: 0.72rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-mid); text-decoration: none;
+    padding: 0 1rem; height: 54px; display: flex; align-items: center;
+    border-right: 1px solid var(--rule); transition: all 0.15s;
+  }
+  .nav-links a:hover { background: var(--teal-dim); color: var(--teal); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; padding-top: 54px;
+    display: grid; grid-template-columns: 64px 1fr;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .hero-margin {
+    border-right: 2px solid var(--teal);
+    background: rgba(42,107,107,0.03);
+    display: flex; flex-direction: column;
+    align-items: center; padding-top: 5rem; gap: 2rem;
+  }
+
+  .margin-label {
+    font-family: 'Inconsolata', monospace; font-size: 0.6rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal); writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .hero-content {
+    padding: 5rem 4rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .hero-annotation {
+    font-family: 'Inconsolata', monospace; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .hero-annotation::before {
+    content: ''; display: block; width: 24px; height: 1px;
+    background: var(--teal);
+  }
+
+  h1.hero-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 700; line-height: 1;
+    color: var(--ink); margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  h1.hero-title .amp {
+    font-style: italic; font-weight: 400; color: var(--teal);
+  }
+
+  .hero-subtitle {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-style: italic; font-weight: 400;
+    color: var(--ink-mid); margin-bottom: 3rem; margin-top: 0.5rem;
+  }
+
+  .hero-ruled {
+    border-top: 1px solid var(--rule); padding-top: 2rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 2rem;
+    align-items: start;
+  }
+
+  .hero-desc {
+    font-size: 1rem; color: var(--ink-mid); max-width: 480px;
+    line-height: 1.8; font-weight: 300;
+  }
+
+  .hero-tags { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; }
+
+  .hero-tag {
+    font-family: 'Inconsolata', monospace; font-size: 0.68rem;
+    letter-spacing: 0.06em; color: var(--teal);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .hero-tag::before { content: '→'; font-size: 0.7rem; }
+
+  /* ── SECTION WRAPPER ── */
+  .notebook-section {
+    display: grid; grid-template-columns: 64px 1fr;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-margin {
+    border-right: 2px solid var(--teal);
+    background: rgba(42,107,107,0.03);
+    display: flex; flex-direction: column;
+    align-items: center; padding-top: 2.5rem; gap: 1rem;
+  }
+
+  .section-num {
+    font-family: 'Inconsolata', monospace; font-size: 0.65rem;
+    color: var(--teal); letter-spacing: 0.1em;
+  }
+
+  .section-content { padding: 3.5rem 4rem; }
+
+  .section-header-row {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    border-bottom: 1px solid var(--ink); padding-bottom: 0.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.6rem; font-weight: 700; color: var(--ink);
+  }
+
+  .section-note {
+    font-family: 'Inconsolata', monospace; font-size: 0.68rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 200px 1fr; gap: 3.5rem; align-items: start; }
+
+  .about-photo {
+    aspect-ratio: 3/4; background: var(--paper-dark);
+    border: 1px solid var(--rule); position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .about-photo::after {
+    content: 'photo'; font-family: 'Inconsolata', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--rule);
+  }
+
+  .about-photo .photo-label {
+    position: absolute; bottom: -1px; left: -1px; right: -1px;
+    background: var(--teal); color: var(--paper);
+    font-family: 'Inconsolata', monospace; font-size: 0.6rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.6rem; text-align: center;
+  }
+
+  .about-text p {
+    font-size: 0.95rem; color: var(--ink-mid);
+    line-height: 1.9; margin-bottom: 1rem; font-weight: 300;
+  }
+
+  .about-text p.lead {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem; font-style: italic; color: var(--ink);
+    font-weight: 400; line-height: 1.7; margin-bottom: 1.2rem;
+  }
+
+  /* ── BOOKS ── */
+  .books-table { width: 100%; border-collapse: collapse; }
+  .books-table thead tr { border-bottom: 1px solid var(--ink); }
+  .books-table th {
+    font-family: 'Inconsolata', monospace; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-light); padding: 0 0 0.7rem; text-align: left; font-weight: 400;
+  }
+  .books-table tbody tr {
+    border-bottom: 1px dashed var(--rule); transition: background 0.15s;
+  }
+  .books-table tbody tr:hover { background: var(--teal-dim); }
+  .books-table td { padding: 0.9rem 0; font-size: 0.92rem; vertical-align: middle; }
+
+  .book-title-cell {
+    font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-size: 0.98rem; color: var(--ink); padding-right: 2rem !important;
+  }
+  .book-author-cell { color: var(--ink-mid) !important; padding-right: 2rem !important; }
+  .book-cat-cell {
+    font-family: 'Inconsolata', monospace; font-size: 0.68rem !important;
+    letter-spacing: 0.04em; color: var(--ink-light) !important;
+  }
+
+  .status-mark {
+    font-family: 'Inconsolata', monospace; font-size: 0.65rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.18rem 0.5rem; border: 1px solid; display: inline-block; float: right;
+  }
+  .status-mark.reading { border-color: var(--teal); color: var(--teal); }
+  .status-mark.done { border-color: var(--rule); color: var(--ink-light); }
+  .status-mark.next { border-color: var(--ink-light); color: var(--ink-mid); }
+
+  /* ── PROJECTS ── */
+  .projects-table { width: 100%; border-collapse: collapse; }
+  .projects-table thead tr { border-bottom: 1px solid var(--ink); }
+  .projects-table th {
+    font-family: 'Inconsolata', monospace; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-light); padding: 0 0 0.7rem; text-align: left; font-weight: 400;
+  }
+  .projects-table tbody tr { border-bottom: 1px dashed var(--rule); transition: background 0.15s; }
+  .projects-table tbody tr:hover { background: var(--teal-dim); }
+  .projects-table td { padding: 1rem 0; vertical-align: top; }
+
+  .proj-name {
+    font-family: 'Libre Baskerville', serif; font-size: 0.98rem;
+    color: var(--ink); padding-right: 2rem !important; line-height: 1.4;
+  }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; padding-right: 2rem !important; }
+  .tech-tag {
+    font-family: 'Inconsolata', monospace; font-size: 0.62rem;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 0.12rem 0.45rem; background: var(--paper-dark);
+    border: 1px solid var(--rule); color: var(--ink-mid);
+  }
+  .proj-status {
+    font-family: 'Inconsolata', monospace; font-size: 0.65rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-light);
+  }
+  .proj-status.active { color: var(--teal); font-weight: 500; }
+
+  /* ── PHYSICS ── */
+  .physics-section { background: var(--ink); }
+  .physics-section .section-margin { background: rgba(42,107,107,0.15); border-right-color: var(--teal-light); }
+  .physics-section .section-num { color: var(--teal-light); }
+  .physics-section .section-title { color: #f5f4ef; }
+  .physics-section .section-note { color: rgba(245,244,239,0.3); }
+  .physics-section .section-header-row { border-bottom-color: rgba(245,244,239,0.15); }
+
+  .physics-intro {
+    font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-size: 1rem; color: rgba(245,244,239,0.6);
+    max-width: 500px; line-height: 1.8; margin-bottom: 2.5rem;
+  }
+
+  .physics-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1px; background: rgba(245,244,239,0.08);
+    border: 1px solid rgba(245,244,239,0.08);
+  }
+
+  .physics-card {
+    background: var(--ink); padding: 1.6rem 1.4rem;
+    transition: background 0.2s;
+  }
+  .physics-card:hover { background: rgba(42,107,107,0.15); }
+
+  .physics-ref {
+    font-family: 'Inconsolata', monospace; font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 0.6rem;
+  }
+
+  .physics-name {
+    font-family: 'Libre Baskerville', serif; font-size: 1rem;
+    color: #f5f4ef; margin-bottom: 0.3rem; font-weight: 400;
+  }
+
+  .physics-source {
+    font-size: 0.78rem; color: rgba(245,244,239,0.35);
+    margin-bottom: 1.2rem; font-weight: 300;
+  }
+
+  .physics-bar { height: 1px; background: rgba(245,244,239,0.1); position: relative; }
+  .physics-fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--teal-light); }
+
+  /* ── COURSES ── */
+  .course-row {
+    display: grid; grid-template-columns: 180px 1fr auto;
+    gap: 2rem; padding: 1.4rem 0;
+    border-bottom: 1px dashed var(--rule); align-items: start;
+  }
+  .course-platform {
+    font-family: 'Inconsolata', monospace; font-size: 0.68rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--teal); padding-top: 0.1rem;
+  }
+  .course-name {
+    font-family: 'Libre Baskerville', serif; font-size: 0.98rem;
+    color: var(--ink); margin-bottom: 0.3rem;
+  }
+  .course-desc { font-size: 0.85rem; color: var(--ink-mid); line-height: 1.65; }
+  .course-status {
+    font-family: 'Inconsolata', monospace; font-size: 0.62rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.18rem 0.5rem; border: 1px solid var(--rule);
+    color: var(--ink-light); white-space: nowrap; align-self: flex-start;
+  }
+  .course-status.active { border-color: var(--teal); color: var(--teal); }
+
+  /* ── NOTES ── */
+  .note-row {
+    display: grid; grid-template-columns: 90px 1fr;
+    gap: 2.5rem; padding: 1.8rem 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .note-date {
+    font-family: 'Inconsolata', monospace; font-size: 0.65rem;
+    letter-spacing: 0.06em; color: var(--ink-light); padding-top: 0.3rem;
+  }
+  .note-title {
+    font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-size: 1.05rem; color: var(--ink); margin-bottom: 0.45rem;
+    line-height: 1.4;
+  }
+  .note-excerpt { font-size: 0.88rem; color: var(--ink-mid); line-height: 1.75; }
+
+  /* ── CONTACT ── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .contact-lead {
+    font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-size: 1.3rem; color: var(--ink); line-height: 1.5;
+    margin-bottom: 1rem; font-weight: 400;
+  }
+  .contact-note { font-size: 0.85rem; color: var(--ink-light); line-height: 1.7; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-label {
+    font-family: 'Inconsolata', monospace; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
+  }
+  .form-input, .form-textarea {
+    background: rgba(255,255,255,0.6); border: 1px solid var(--rule);
+    border-bottom: 1px solid var(--ink); border-radius: 0;
+    padding: 0.65rem 0.8rem; font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem; color: var(--ink); font-weight: 300;
+    outline: none; transition: border-color 0.15s, background 0.15s; width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--teal); background: white;
+  }
+  .form-textarea { resize: vertical; min-height: 110px; }
+  .form-submit {
+    font-family: 'Inconsolata', monospace; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--teal); color: var(--paper);
+    border: none; padding: 0.8rem 2rem;
+    cursor: pointer; align-self: flex-start; transition: background 0.15s;
+  }
+  .form-submit:hover { background: var(--ink); }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .form-message { font-family: 'Inconsolata', monospace; font-size: 0.7rem; letter-spacing: 0.05em; display: none; }
+  .form-message.success { color: #2a6b3a; display: block; }
+  .form-message.error { color: #8b2a2a; display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 2px solid var(--ink);
+    display: grid; grid-template-columns: 64px 1fr;
+  }
+
+  .footer-margin { border-right: 2px solid var(--teal); background: rgba(42,107,107,0.03); }
+
+  .footer-content {
+    padding: 1.5rem 4rem; display: flex;
+    align-items: center; justify-content: space-between;
+  }
+
+  .footer-name {
+    font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-size: 0.9rem; color: var(--ink);
+  }
+
+  .footer-note {
+    font-family: 'Inconsolata', monospace; font-size: 0.62rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  .hero-content > * { animation: fadeIn 0.7s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.35s; }
+
+  .reveal { opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero, .notebook-section { grid-template-columns: 10px 1fr; }
+    footer { grid-template-columns: 10px 1fr; }
+    .hero-margin, .section-margin, .footer-margin { border-right-width: 1px; }
+    .margin-label, .section-num { display: none; }
+    .hero-content, .section-content { padding: 2.5rem 1.5rem; }
+    .footer-content { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.4rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-photo { max-width: 150px; aspect-ratio: 1; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .note-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .course-row { grid-template-columns: 1fr; gap: 0.4rem; }
+    .hero-ruled { grid-template-columns: 1fr; }
+    .hero-tags { align-items: flex-start; }
+    .book-cat-cell, .books-table th:nth-child(3) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">Bench &amp; Books</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#physics">Physics</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#notes">Notes</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-margin">
+    <span class="margin-label">Personal Archive</span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-annotation">Field notebook — ongoing</div>
+    <h1 class="hero-title">Bench<br><span class="amp">&amp;</span> Books</h1>
+    <p class="hero-subtitle">A scientist's corner of the internet</p>
+    <div class="hero-ruled">
+      <p class="hero-desc">Building things. Reading things. Figuring things out. A living record of projects, books, physics, and everything in between.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">Science &amp; Technology</span>
+        <span class="hero-tag">Electronics &amp; Making</span>
+        <span class="hero-tag">Physics</span>
+        <span class="hero-tag">Books</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 ABOUT -->
+<div class="notebook-section" id="about">
+  <div class="section-margin"><span class="section-num">§01</span></div>
+  <div class="section-content">
+    <div class="section-header-row">
+      <h2 class="section-title">About</h2>
+      <span class="section-note">Who is this person</span>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-photo"><div class="photo-label">photograph</div></div>
+      <div class="about-text">
+        <p class="lead">A person who makes things by day and reads things by night — and occasionally stays up too late thinking about physics.</p>
+        <p>This is a living record, not a blog. The books I've read, the projects I've built, the courses I'm working through, and the questions I can't stop asking.</p>
+        <p>I believe in learning in public, building carefully, and the quiet satisfaction of understanding how things actually work.</p>
+        <p>Currently: somewhere between two cities, carrying a lot of books.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 BOOKS -->
+<div class="notebook-section" id="books">
+  <div class="section-margin"><span class="section-num">§02</span></div>
+  <div class="section-content">
+    <div class="section-header-row">
+      <h2 class="section-title">Books</h2>
+      <span class="section-note">A running record</span>
+    </div>
+    <div class="reveal">
+      <table class="books-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th class="book-cat-cell">Category</th>
+            <th style="text-align:right">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="book-title-cell">The Order of Time</td>
+            <td class="book-author-cell">Carlo Rovelli</td>
+            <td class="book-cat-cell">Popular Science</td>
+            <td><span class="status-mark reading">Reading</span></td>
+          </tr>
+          <tr>
+            <td class="book-title-cell">Six Easy Pieces</td>
+            <td class="book-author-cell">Richard Feynman</td>
+            <td class="book-cat-cell">Physics</td>
+            <td><span class="status-mark done">Done</span></td>
+          </tr>
+          <tr>
+            <td class="book-title-cell">Pride and Prejudice</td>
+            <td class="book-author-cell">Jane Austen</td>
+            <td class="book-cat-cell">Classic Fiction</td>
+            <td><span class="status-mark done">Done</span></td>
+          </tr>
+          <tr>
+            <td class="book-title-cell">Cosmos</td>
+            <td class="book-author-cell">Carl Sagan</td>
+            <td class="book-cat-cell">Popular Science</td>
+            <td><span class="status-mark next">Up next</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 03 PROJECTS -->
+<div class="notebook-section" id="projects">
+  <div class="section-margin"><span class="section-num">§03</span></div>
+  <div class="section-content">
+    <div class="section-header-row">
+      <h2 class="section-title">Projects</h2>
+      <span class="section-note">Things built</span>
+    </div>
+    <div class="reveal">
+      <table class="projects-table">
+        <thead>
+          <tr>
+            <th style="width:30%">Project</th>
+            <th style="width:50%">Stack / Tools</th>
+            <th style="width:20%">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="proj-name">Colombo — Offline AI</td>
+            <td><div class="proj-stack"><span class="tech-tag">Ollama</span><span class="tech-tag">llama3.2</span><span class="tech-tag">Msty</span><span class="tech-tag">Local inference</span></div></td>
+            <td><span class="proj-status active">Active</span></td>
+          </tr>
+          <tr>
+            <td class="proj-name">Colombo 2.0 — Voice + RAG</td>
+            <td><div class="proj-stack"><span class="tech-tag">Whisper</span><span class="tech-tag">Piper TTS</span><span class="tech-tag">RAG</span><span class="tech-tag">Home Assistant</span></div></td>
+            <td><span class="proj-status">Planned</span></td>
+          </tr>
+          <tr>
+            <td class="proj-name">Home Lab</td>
+            <td><div class="proj-stack"><span class="tech-tag">Raspberry Pi</span><span class="tech-tag">SDR</span><span class="tech-tag">3D Printing</span><span class="tech-tag">Electronics</span></div></td>
+            <td><span class="proj-status active">In progress</span></td>
+          </tr>
+          <tr>
+            <td class="proj-name">Writing Setup</td>
+            <td><div class="proj-stack"><span class="tech-tag">Raspberry Pi</span><span class="tech-tag">Mechanical KB</span><span class="tech-tag">Obsidian</span></div></td>
+            <td><span class="proj-status">Planned</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 04 PHYSICS -->
+<div class="notebook-section physics-section" id="physics">
+  <div class="section-margin"><span class="section-num">§04</span></div>
+  <div class="section-content">
+    <div class="section-header-row">
+      <h2 class="section-title">Physics</h2>
+      <span class="section-note">The long slow study</span>
+    </div>
+    <p class="physics-intro reveal">Teaching myself physics from the ground up. No deadlines, no exams — just the pleasure of understanding how the world actually works.</p>
+    <div class="physics-grid reveal">
+      <div class="physics-card">
+        <div class="physics-ref">EM · 01</div>
+        <div class="physics-name">Electromagnetism</div>
+        <div class="physics-source">MIT OCW 8.02 · Walter Lewin</div>
+        <div class="physics-bar"><div class="physics-fill" style="width:35%"></div></div>
+      </div>
+      <div class="physics-card">
+        <div class="physics-ref">TH · 01</div>
+        <div class="physics-name">Thermodynamics</div>
+        <div class="physics-source">Self-directed reading</div>
+        <div class="physics-bar"><div class="physics-fill" style="width:20%"></div></div>
+      </div>
+      <div class="physics-card">
+        <div class="physics-ref">QM · 00</div>
+        <div class="physics-name">Nature of Time</div>
+        <div class="physics-source">Rovelli · The Order of Time</div>
+        <div class="physics-bar"><div class="physics-fill" style="width:55%"></div></div>
+      </div>
+      <div class="physics-card">
+        <div class="physics-ref">CM · 01</div>
+        <div class="physics-name">Classical Mechanics</div>
+        <div class="physics-source">Feynman Lectures · Vol I</div>
+        <div class="physics-bar"><div class="physics-fill" style="width:5%"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 COURSES -->
+<div class="notebook-section" id="courses">
+  <div class="section-margin"><span class="section-num">§05</span></div>
+  <div class="section-content">
+    <div class="section-header-row">
+      <h2 class="section-title">Courses</h2>
+      <span class="section-note">Structured learning</span>
+    </div>
+    <div class="reveal">
+      <div class="course-row">
+        <div class="course-platform">MIT OpenCourseWare</div>
+        <div><div class="course-name">8.02 Electricity &amp; Magnetism</div><div class="course-desc">Walter Lewin's lectures. Working through problem sets alongside the videos.</div></div>
+        <span class="course-status active">Active</span>
+      </div>
+      <div class="course-row">
+        <div class="course-platform">Self-directed</div>
+        <div><div class="course-name">Electronics Fundamentals</div><div class="course-desc">Circuits, components, SDR radio. Learning by doing.</div></div>
+        <span class="course-status">Ongoing</span>
+      </div>
+      <div class="course-row">
+        <div class="course-platform">—</div>
+        <div><div class="course-name">Add your next course here</div><div class="course-desc">Replace with whatever you're working through.</div></div>
+        <span class="course-status">Planned</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 NOTES -->
+<div class="notebook-section" id="notes">
+  <div class="section-margin"><span class="section-num">§06</span></div>
+  <div class="section-content">
+    <div class="section-header-row">
+      <h2 class="section-title">Notes</h2>
+      <span class="section-note">Short thoughts</span>
+    </div>
+    <div class="reveal">
+      <div class="note-row">
+        <div class="note-date">Apr 2026</div>
+        <div>
+          <div class="note-title">On reading Rovelli — time is not what I thought</div>
+          <div class="note-excerpt">The Order of Time has quietly rearranged some furniture in my head. The section on entropy and the direction of time is sitting with me.</div>
+        </div>
+      </div>
+      <div class="note-row">
+        <div class="note-date">Mar 2026</div>
+        <div>
+          <div class="note-title">Why I built a local AI instead of using the cloud</div>
+          <div class="note-excerpt">It started as a curiosity about what runs locally. It became something I use every day.</div>
+        </div>
+      </div>
+      <div class="note-row">
+        <div class="note-date">Soon</div>
+        <div>
+          <div class="note-title">Your first note goes here</div>
+          <div class="note-excerpt">Replace this with something you've been thinking about — a book reaction, an observation, something from a project.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 CONTACT -->
+<div class="notebook-section" id="contact">
+  <div class="section-margin"><span class="section-num">§07</span></div>
+  <div class="section-content">
+    <div class="section-header-row">
+      <h2 class="section-title">Contact</h2>
+      <span class="section-note">Get in touch</span>
+    </div>
+    <div class="contact-grid reveal">
+      <div>
+        <p class="contact-lead">If something here resonated — books, physics, building things — I'd like to hear from you.</p>
+        <p class="contact-note">Messages are delivered privately. Your email is only used to reply.</p>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-field">
+          <label class="form-label" for="cf-name">Name</label>
+          <input class="form-input" type="text" id="cf-name" name="name" required placeholder="Your name">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="cf-email">Email</label>
+          <input class="form-input" type="email" id="cf-email" name="email" required placeholder="your@email.com">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="cf-msg">Message</label>
+          <textarea class="form-textarea" id="cf-msg" name="message" required placeholder="What's on your mind?"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send message →</button>
+        <p class="form-message" id="formMsg"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-margin"></div>
+  <div class="footer-content">
+    <span class="footer-name">Bench &amp; Books</span>
+    <span class="footer-note">Built with curiosity · Updated slowly</span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.form-submit');
+    const msg = document.getElementById('formMsg');
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST', headers: { 'Accept': 'application/json' },
+        body: new FormData(this)
+      });
+      if (res.ok) { msg.textContent = 'Message sent. Thank you.'; msg.className = 'form-message success'; this.reset(); }
+      else throw new Error();
+    } catch { msg.textContent = 'Something went wrong. Please try again.'; msg.className = 'form-message error'; }
+    btn.textContent = 'Send message →'; btn.disabled = false;
+  });
+</script>
+</body>
+</html>
