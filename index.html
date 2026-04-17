@@ -68,7 +68,7 @@
 
   /* ── HERO ── */
   .hero {
-    min-height: 100vh; padding-top: 54px;
+    min-height: 40vh; padding-top: 54px;
     display: grid; grid-template-columns: 64px 1fr;
     border-bottom: 2px solid var(--ink);
   }
@@ -88,7 +88,7 @@
   }
 
   .hero-content {
-    padding: 5rem 4rem 4rem;
+    padding: 2rem 4rem 2rem;
     display: flex; flex-direction: column; justify-content: center;
   }
 
@@ -268,8 +268,8 @@
   .tech-tag {
     font-family: 'Inconsolata', monospace; font-size: 0.62rem;
     letter-spacing: 0.04em; text-transform: uppercase;
-    padding: 0.12rem 0.45rem; background: var(--paper-dark);
-    border: 1px solid var(--rule); color: var(--ink-mid);
+    padding: 0.12rem 0.45rem; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12); color: rgba(240,242,245,0.6);
   }
   .proj-status {
     font-family: 'Inconsolata', monospace; font-size: 0.65rem;
@@ -324,27 +324,22 @@
 
   /* ── COURSES ── */
   .course-row {
-    display: grid; grid-template-columns: 180px 1fr auto;
+    display: grid; grid-template-columns: 1fr auto;
     gap: 2rem; padding: 1.4rem 0;
-    border-bottom: 1px dashed var(--rule); align-items: start;
-  }
-  .course-platform {
-    font-family: 'Inconsolata', monospace; font-size: 0.68rem;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--teal); padding-top: 0.1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08); align-items: start;
   }
   .course-name {
     font-family: 'Libre Baskerville', serif; font-size: 0.98rem;
-    color: var(--ink); margin-bottom: 0.3rem;
+    color: #f0f2f5; margin-bottom: 0.3rem;
   }
-  .course-desc { font-size: 0.85rem; color: var(--ink-mid); line-height: 1.65; }
+  .course-desc { font-size: 0.85rem; color: rgba(240,242,245,0.65); line-height: 1.65; }
   .course-status {
     font-family: 'Inconsolata', monospace; font-size: 0.62rem;
     letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 0.18rem 0.5rem; border: 1px solid var(--rule);
-    color: var(--ink-light); white-space: nowrap; align-self: flex-start;
+    padding: 0.18rem 0.5rem; border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(240,242,245,0.5); white-space: nowrap; align-self: flex-start;
   }
-  .course-status.active { border-color: var(--teal); color: var(--teal); }
+  .course-status.active { border-color: var(--teal-light); color: var(--teal-light); }
 
   /* ── NOTES ── */
   .note-row {
@@ -464,7 +459,6 @@
     <li><a href="#about">About</a></li>
     <li><a href="#books">Books</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#physics">Physics</a></li>
     <li><a href="#courses">Courses</a></li>
     <li><a href="#notes">Notes</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -479,7 +473,9 @@
   <div class="hero-content">
     <h1 class="hero-title">Bench<br><span class="amp">&amp;</span> Books</h1>
     <div class="hero-ruled">
-      <p class="hero-desc">A living record of projects, books, physics, and everything in between.</p>
+      <div>
+        <p class="hero-desc">Part notebook, part archive, part experiment. Life moves fast and this is my attempt to document it. The projects being built, the books being read, the physics being slowly understood, and the questions that won't go away. A quiet corner of the internet where all of it finds a home. No particular agenda. Just curiosity, documented.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -489,13 +485,12 @@
   <div class="section-margin"><span class="section-num">§01</span></div>
   <div class="section-content">
     <div class="section-header-row">
-      <h2 class="section-title">About</h2>
+      <h2 class="section-title">About Who?</h2>
     </div>
     <div class="about-grid reveal">
       <div class="about-photo"><div class="photo-label">photograph</div></div>
       <div class="about-text">
-        <p>This is a living record, not a blog. The books I've read, the projects I've built, the courses I'm working through, and the questions I can't stop asking.</p>
-        <p>I believe in learning in public, building carefully, and the quiet satisfaction of understanding how things actually work.</p>
+        <p>Curious, forever learning, easily distracted by interesting things. This site is my attempt to capture it all: the projects, the books, the questions. One version of my story, in this universe, this time.</p>
       </div>
     </div>
   </div>
@@ -527,22 +522,46 @@
             <td><span class="status-mark reading">Reading</span></td>
           </tr>
           <tr>
-            <td class="book-title-cell">Six Easy Pieces</td>
-            <td class="book-author-cell">Richard Feynman</td>
-            <td class="book-cat-cell">Physics</td>
-            <td><span class="status-mark done">Done</span></td>
+            <td class="book-title-cell">The Science of Interstellar</td>
+            <td class="book-author-cell">Kip Thorne</td>
+            <td class="book-cat-cell">Popular Science</td>
+            <td><span class="status-mark reading">Reading</span></td>
           </tr>
           <tr>
-            <td class="book-title-cell">Pride and Prejudice</td>
+            <td class="book-title-cell">Chip War</td>
+            <td class="book-author-cell">Chris Miller</td>
+            <td class="book-cat-cell">Technology</td>
+            <td><span class="status-mark next">Paused</span></td>
+          </tr>
+          <tr>
+            <td class="book-title-cell">Seveneves</td>
+            <td class="book-author-cell">Neal Stephenson</td>
+            <td class="book-cat-cell">Science Fiction</td>
+            <td><span class="status-mark next">Paused</span></td>
+          </tr>
+          <tr>
+            <td class="book-title-cell">Asimov's New Guide to Science</td>
+            <td class="book-author-cell">Isaac Asimov</td>
+            <td class="book-cat-cell">Popular Science</td>
+            <td><span class="status-mark next">Planned</span></td>
+          </tr>
+          <tr>
+            <td class="book-title-cell">Persuasion</td>
             <td class="book-author-cell">Jane Austen</td>
             <td class="book-cat-cell">Classic Fiction</td>
-            <td><span class="status-mark done">Done</span></td>
+            <td><span class="status-mark reading">Reading</span></td>
           </tr>
           <tr>
-            <td class="book-title-cell">Cosmos</td>
-            <td class="book-author-cell">Carl Sagan</td>
-            <td class="book-cat-cell">Popular Science</td>
-            <td><span class="status-mark next">Up next</span></td>
+            <td class="book-title-cell">Harry Potter and the Sorcerer's Stone</td>
+            <td class="book-author-cell">J.K. Rowling</td>
+            <td class="book-cat-cell">Fantasy</td>
+            <td><span class="status-mark reading">Reading</span></td>
+          </tr>
+          <tr>
+            <td class="book-title-cell">Harry Potter and the Deathly Hallows</td>
+            <td class="book-author-cell">J.K. Rowling</td>
+            <td class="book-cat-cell">Fantasy</td>
+            <td><span class="status-mark done">Done</span></td>
           </tr>
         </tbody>
       </table>
@@ -578,12 +597,12 @@
             <td><span class="proj-status">Planned</span></td>
           </tr>
           <tr>
-            <td class="proj-name">Home Lab</td>
+            <td class="proj-name">Home Science Lab</td>
             <td><div class="proj-stack"><span class="tech-tag">Raspberry Pi</span><span class="tech-tag">SDR</span><span class="tech-tag">3D Printing</span><span class="tech-tag">Electronics</span></div></td>
             <td><span class="proj-status active">In progress</span></td>
           </tr>
           <tr>
-            <td class="proj-name">Writing Setup</td>
+            <td class="proj-name">WriterDeck</td>
             <td><div class="proj-stack"><span class="tech-tag">Raspberry Pi</span><span class="tech-tag">Mechanical KB</span><span class="tech-tag">Obsidian</span></div></td>
             <td><span class="proj-status">Planned</span></td>
           </tr>
@@ -593,69 +612,63 @@
   </div>
 </div>
 
-<!-- 04 PHYSICS -->
-<div class="notebook-section physics-section" id="physics">
+<!-- 04 COURSES -->
+<div class="notebook-section physics-section" id="courses">
   <div class="section-margin"><span class="section-num">§04</span></div>
   <div class="section-content">
     <div class="section-header-row">
-      <h2 class="section-title">Physics</h2>
+      <h2 class="section-title">Courses</h2>
       <span class="section-note">The long slow study</span>
     </div>
     <p class="physics-intro reveal">Teaching myself physics from the ground up. No deadlines, no exams — just the pleasure of understanding how the world actually works.</p>
-    <div class="physics-grid reveal">
-      <div class="physics-card">
-        <div class="physics-ref">EM · 01</div>
-        <div class="physics-name">Electromagnetism</div>
-        <div class="physics-source">MIT OCW 8.02 · Walter Lewin</div>
-        <div class="physics-bar"><div class="physics-fill" style="width:35%"></div></div>
-      </div>
-      <div class="physics-card">
-        <div class="physics-ref">TH · 01</div>
-        <div class="physics-name">Thermodynamics</div>
-        <div class="physics-source">Self-directed reading</div>
-        <div class="physics-bar"><div class="physics-fill" style="width:20%"></div></div>
-      </div>
-      <div class="physics-card">
-        <div class="physics-ref">QM · 00</div>
-        <div class="physics-name">Nature of Time</div>
-        <div class="physics-source">Rovelli · The Order of Time</div>
-        <div class="physics-bar"><div class="physics-fill" style="width:55%"></div></div>
-      </div>
-      <div class="physics-card">
-        <div class="physics-ref">CM · 01</div>
-        <div class="physics-name">Classical Mechanics</div>
-        <div class="physics-source">Feynman Lectures · Vol I</div>
-        <div class="physics-bar"><div class="physics-fill" style="width:5%"></div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 05 COURSES -->
-<div class="notebook-section" id="courses">
-  <div class="section-margin"><span class="section-num">§05</span></div>
-  <div class="section-content">
-    <div class="section-header-row">
-      <h2 class="section-title">Courses</h2>
-    </div>
     <div class="reveal">
       <div class="course-row">
-        <div class="course-platform">MIT OpenCourseWare</div>
-        <div><div class="course-name">8.02 Electricity &amp; Magnetism</div><div class="course-desc">Walter Lewin's lectures. Working through problem sets alongside the videos.</div></div>
+        <div>
+          <div class="course-name">8.02 Electricity &amp; Magnetism</div>
+          <div class="course-desc">Walter Lewin's lectures via MIT OpenCourseWare. Working through problem sets alongside the videos.</div>
+          <div style="margin-top:0.5rem;display:flex;gap:0.4rem;flex-wrap:wrap"><span class="tech-tag">Physics</span><span class="tech-tag">Electromagnetism</span></div>
+        </div>
         <span class="course-status active">Active</span>
       </div>
       <div class="course-row">
-        <div class="course-platform">Self-directed</div>
-        <div><div class="course-name">Electronics Fundamentals</div><div class="course-desc">Circuits, components, SDR radio. Learning by doing.</div></div>
+        <div>
+          <div class="course-name">Electronics Fundamentals</div>
+          <div class="course-desc">Self-directed. Circuits, components, SDR radio. Learning by doing.</div>
+          <div style="margin-top:0.5rem;display:flex;gap:0.4rem;flex-wrap:wrap"><span class="tech-tag">Electronics</span><span class="tech-tag">Engineering</span></div>
+        </div>
         <span class="course-status">Ongoing</span>
+      </div>
+      <div class="course-row">
+        <div>
+          <div class="course-name">Thermodynamics</div>
+          <div class="course-desc">Self-directed reading and study.</div>
+          <div style="margin-top:0.5rem;display:flex;gap:0.4rem;flex-wrap:wrap"><span class="tech-tag">Physics</span><span class="tech-tag">Thermodynamics</span></div>
+        </div>
+        <span class="course-status">Ongoing</span>
+      </div>
+      <div class="course-row">
+        <div>
+          <div class="course-name">Nature of Time</div>
+          <div class="course-desc">Reading The Order of Time by Rovelli alongside broader study of time in physics.</div>
+          <div style="margin-top:0.5rem;display:flex;gap:0.4rem;flex-wrap:wrap"><span class="tech-tag">Physics</span><span class="tech-tag">Quantum Mechanics</span></div>
+        </div>
+        <span class="course-status active">Active</span>
+      </div>
+      <div class="course-row">
+        <div>
+          <div class="course-name">Classical Mechanics</div>
+          <div class="course-desc">MIT OpenCourseWare. Elementary but foundational.</div>
+          <div style="margin-top:0.5rem;display:flex;gap:0.4rem;flex-wrap:wrap"><span class="tech-tag">Physics</span><span class="tech-tag">Mechanics</span></div>
+        </div>
+        <span class="course-status" style="color:rgba(245,244,239,0.4);border-color:rgba(245,244,239,0.15)">Done</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 06 NOTES -->
+<!-- 05 NOTES -->
 <div class="notebook-section" id="notes">
-  <div class="section-margin"><span class="section-num">§06</span></div>
+  <div class="section-margin"><span class="section-num">§05</span></div>
   <div class="section-content">
     <div class="section-header-row">
       <h2 class="section-title">Notes</h2>
@@ -675,28 +688,20 @@
           <div class="note-excerpt">It started as a curiosity about what runs locally. It became something I use every day.</div>
         </div>
       </div>
-      <div class="note-row">
-        <div class="note-date">Soon</div>
-        <div>
-          <div class="note-title">Your first note goes here</div>
-          <div class="note-excerpt">Replace this with something you've been thinking about — a book reaction, an observation, something from a project.</div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
 
-<!-- 07 CONTACT -->
+<!-- 06 CONTACT -->
 <div class="notebook-section" id="contact">
-  <div class="section-margin"><span class="section-num">§07</span></div>
+  <div class="section-margin"><span class="section-num">§06</span></div>
   <div class="section-content">
     <div class="section-header-row">
       <h2 class="section-title">Contact</h2>
-      <span class="section-note">Get in touch</span>
     </div>
     <div class="contact-grid reveal">
       <div>
-        <p class="contact-lead">If something here resonated — books, physics, building things — I'd like to hear from you.</p>
+        <p class="contact-lead">Feel free to reach out if something here caught your interest — books, physics, or building things.</p>
         <p class="contact-note">Messages are delivered privately. Your email is only used to reply.</p>
       </div>
       <form class="contact-form" id="contactForm">
