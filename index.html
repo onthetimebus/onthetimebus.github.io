@@ -460,7 +460,6 @@
     <li><a href="#books">Books</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#courses">Courses</a></li>
-    <li><a href="#notes">Notes</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -488,7 +487,7 @@
       <h2 class="section-title">About Who?</h2>
     </div>
     <div class="about-grid reveal">
-      <div class="about-photo"><div class="photo-label">photograph</div></div>
+      <img src="WHO.jpg" alt="photo" style="width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--rule);display:block;">
       <div class="about-text">
         <p>Curious, forever learning, easily distracted by interesting things. This site is my attempt to capture it all: the projects, the books, the questions. One version of my story, in this universe, this time.</p>
       </div>
@@ -666,32 +665,6 @@
   </div>
 </div>
 
-<!-- 05 NOTES -->
-<div class="notebook-section" id="notes">
-  <div class="section-margin"><span class="section-num">§05</span></div>
-  <div class="section-content">
-    <div class="section-header-row">
-      <h2 class="section-title">Notes</h2>
-    </div>
-    <div class="reveal">
-      <div class="note-row">
-        <div class="note-date">Apr 2026</div>
-        <div>
-          <div class="note-title">On reading Rovelli — time is not what I thought</div>
-          <div class="note-excerpt">The Order of Time has quietly rearranged some furniture in my head. The section on entropy and the direction of time is sitting with me.</div>
-        </div>
-      </div>
-      <div class="note-row">
-        <div class="note-date">Mar 2026</div>
-        <div>
-          <div class="note-title">Why I built a local AI instead of using the cloud</div>
-          <div class="note-excerpt">It started as a curiosity about what runs locally. It became something I use every day.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- 06 CONTACT -->
 <div class="notebook-section" id="contact">
   <div class="section-margin"><span class="section-num">§06</span></div>
@@ -744,7 +717,7 @@
     const msg = document.getElementById('formMsg');
     btn.textContent = 'Sending...'; btn.disabled = true;
     try {
-      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const res = await fetch('https://formspree.io/f/xgorkyyr', {
         method: 'POST', headers: { 'Accept': 'application/json' },
         body: new FormData(this)
       });
