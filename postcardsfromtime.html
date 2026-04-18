@@ -60,7 +60,7 @@
 
   /* ── HERO ── */
   .hero {
-    min-height: 70vh; padding-top: 56px;
+    min-height: 50vh; padding-top: 56px;
     display: flex; align-items: flex-end;
     background: var(--ink);
     position: relative; overflow: hidden;
@@ -75,7 +75,7 @@
 
   .hero-content {
     position: relative; z-index: 1;
-    padding: 5rem 4rem 5rem; width: 100%;
+    padding: 3rem 4rem 4rem; width: 100%;
     display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end;
   }
 
@@ -361,11 +361,10 @@
   <div class="hero-texture"></div>
   <div class="hero-content">
     <div class="hero-left">
-      <p class="hero-eyebrow">A travel record</p>
       <h1 class="hero-title">Postcards<br><em>from Time</em></h1>
     </div>
     <div class="hero-right">
-      <p class="hero-desc">Places visited, things noticed, moments kept.</p>
+      <p class="hero-desc">Places visited, things noticed, moments collected.</p>
       <div class="hero-count">
         <div class="count-item">
           <div class="count-num">4</div>
@@ -388,7 +387,6 @@
 <div class="page-section" id="trips">
   <div class="section-header">
     <span class="section-title">Trips</span>
-    <span class="section-note">Most recent first</span>
   </div>
   <div class="section-body">
     <div class="reveal">
@@ -406,8 +404,8 @@
         <div class="postcard-content">
           <div class="postcard-place">Helsinki</div>
           <div class="postcard-tagline">Frozen sea, tram rides at sunset, salmon soup</div>
-          <p class="postcard-text">The first day a friend who lives in Finland took me around — Kiasma and the modern art galleries, and the salmon soup which is as good as everyone says. Then a ferry across a frozen sea to Suomenlinna, the sea fortress island. The water was solid. It felt surreal.</p>
-          <p class="postcard-text">The second day I explored on my own. I took a tram ride across the city at sunset — the roads were icy and there was snow underfoot, but the sun was out and the skies were extraordinary. Cold and warm at the same time. Helsinki does that.</p>
+          <p class="postcard-text">The first day a friend who lives in Finland took me around. Kiasma and the modern art galleries, and the salmon soup which is as good as everyone says. Then a ferry across a frozen sea to Suomenlinna, the sea fortress island. The water was solid. It felt surreal.</p>
+          <p class="postcard-text">The second day I explored on my own. I took a tram ride across the city at sunset. The roads were icy and there was snow underfoot, but the sun was out and the skies were extraordinary. Cold and warm at the same time.</p>
           <div class="photo-grid" style="grid-template-columns: repeat(4, 1fr);">
             <div class="photo-slot"><img src="hel1.jpg" alt="Helsinki"></div>
             <div class="photo-slot"><img src="hel2.jpg" alt="Helsinki"></div>
@@ -429,9 +427,9 @@
         </div>
         <div class="postcard-content">
           <div class="postcard-place">Cambridge</div>
-          <div class="postcard-tagline">Unexpected snow, second-hand books, a solo wander</div>
-          <p class="postcard-text">A solo two-day trip, starting with a delayed train that gave me more time in transit than planned. Stayed at the YHA which was good. Spent the days wandering — museums, bookshops, and picked up a few books on poetry and classic literature along the way.</p>
-          <p class="postcard-text">The second day started rainy but mid-afternoon the rain turned to snow, suddenly and briefly. One of those unexpected moments that makes a trip memorable. Somewhere there are photos and videos of that.</p>
+          <div class="postcard-tagline">Unexpected snow and second-hand bookshops</div>
+          <p class="postcard-text">A two-day trip, starting with a delayed train that gave me more time in transit than planned. Stayed at the YHA which was good. Spent the days wandering through museums and second-hand bookshops, picking up a few books on poetry and classic literature along the way.</p>
+          <p class="postcard-text">The second day started rainy but mid-afternoon the rain turned to snow, suddenly and briefly. One of those unexpected moments that makes a trip memorable.</p>
           <div class="photo-grid">
             <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
             <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
@@ -452,9 +450,9 @@
         </div>
         <div class="postcard-content">
           <div class="postcard-place">Rome</div>
-          <div class="postcard-tagline">Fountains, gelato, and two thousand years of history</div>
-          <p class="postcard-text">Rome is monumental in every sense. The Trevi Fountain, Piazza Navona — places you've seen in pictures a hundred times that still manage to stop you when you're standing in front of them.</p>
-          <p class="postcard-text">But what stays with me is the smaller things. Really good bread with cheese and sundried tomatoes. Loads of gelato. The way food in Rome feels unhurried and just right.</p>
+          <div class="postcard-tagline">Monumental, delicious, and completely overwhelming</div>
+          <p class="postcard-text">Rome is monumental in every sense. The Trevi Fountain, Piazza Navona, the Pantheon, the Colosseum. Places you've seen in pictures a hundred times that still manage to stop you when you're standing in front of them. The Colosseum especially. It fills you with a kind of awe that's hard to put into words.</p>
+          <p class="postcard-text">But it was also about the smaller things. The gelato was the best I've had, and somehow so affordable. One particular afternoon I found a focaccia from a popular local place. The mozzarella and pesto were all homemade. It was amazing.</p>
           <div class="photo-grid" style="grid-template-columns: repeat(4, 1fr);">
             <div class="photo-slot"><img src="rome1.jpg" alt="Rome"></div>
             <div class="photo-slot"><img src="rome2.jpg" alt="Rome"></div>
@@ -476,8 +474,8 @@
         </div>
         <div class="postcard-content">
           <div class="postcard-place">Vatican City</div>
-          <div class="postcard-tagline">St. Peter's, the Sistine Chapel, and a sense of scale</div>
-          <p class="postcard-text">The smallest country in the world, visited on the same trip as Rome. St. Peter's Basilica, the Sistine Chapel — places that make you feel very small in the best possible way.</p>
+          <div class="postcard-tagline">The Raphael Rooms stole the show</div>
+          <p class="postcard-text">The smallest country in the world. St. Peter's Basilica was beautiful, and like every visitor I was looking forward to the Sistine Chapel. It was stunning. But it was the Raphael Rooms that truly moved me. Every wall so beautifully painted, so alive. Standing there felt like being alongside Raphael as he worked. That was my favourite moment of the whole trip.</p>
           <div class="photo-grid">
             <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
             <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
