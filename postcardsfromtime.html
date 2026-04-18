@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Postcards from Time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700&family=Inconsolata:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2;
+    --paper: #f4efe6;
+    --paper-dark: #e8e0d0;
+    --ink: #2c2416;
+    --ink-mid: #5c4f3a;
+    --ink-light: #9c8e78;
+    --terracotta: #c4674a;
+    --terracotta-dim: rgba(196,103,74,0.1);
+    --sage: #7a9e7e;
+    --rule: #d8cfc0;
+    --stamp-border: #b8a898;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 3rem;
+    display: flex; align-items: center;
+    justify-content: space-between; height: 56px;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-style: italic; font-weight: 400;
+    color: var(--ink); text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Inconsolata', monospace; font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-mid); text-decoration: none; transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 70vh; padding-top: 56px;
+    display: flex; align-items: flex-end;
+    background: var(--ink);
+    position: relative; overflow: hidden;
+  }
+
+  .hero-texture {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(196,103,74,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(122,158,126,0.1) 0%, transparent 50%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    padding: 5rem 4rem 5rem; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    font-family: 'Inconsolata', monospace; font-size: 0.68rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .hero-eyebrow::after {
+    content: ''; flex: 1; max-width: 40px;
+    height: 1px; background: var(--terracotta); opacity: 0.5;
+  }
+
+  h1.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700; line-height: 1;
+    color: var(--cream); letter-spacing: -0.01em;
+  }
+
+  h1.hero-title em {
+    font-style: italic; font-weight: 400;
+    color: var(--terracotta); display: block;
+  }
+
+  .hero-right {
+    padding-bottom: 0.5rem;
+  }
+
+  .hero-desc {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.05rem;
+    color: rgba(250,247,242,0.5); line-height: 1.8;
+    border-left: 2px solid rgba(196,103,74,0.4);
+    padding-left: 1.5rem;
+  }
+
+  .hero-count {
+    margin-top: 2rem;
+    display: flex; gap: 2rem;
+  }
+
+  .count-item {}
+
+  .count-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--cream); line-height: 1;
+  }
+
+  .count-label {
+    font-family: 'Inconsolata', monospace; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(250,247,242,0.35); margin-top: 0.3rem;
+  }
+
+  /* ── SECTION ── */
+  .page-section { border-bottom: 1px solid var(--rule); }
+
+  .section-header {
+    padding: 2rem 4rem 0;
+    display: flex; align-items: baseline;
+    gap: 1.5rem; border-bottom: 1px solid var(--rule);
+    padding-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--ink);
+  }
+
+  .section-note {
+    font-family: 'Inconsolata', monospace; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
+  }
+
+  .section-body { padding: 0 4rem 4rem; }
+
+  /* ── POSTCARD ENTRY ── */
+  .postcard {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 3rem; padding: 3.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .postcard:last-child { border-bottom: none; }
+
+  .postcard-stamp-col {
+    width: 160px;
+    min-width: 160px;
+    max-width: 160px;
+    flex-shrink: 0;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 1rem;
+  }
+
+  .postcard-content {
+    min-width: 0;
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .photo-grid {
+    display: grid;
+    gap: 0.5rem; margin-top: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .stamp {
+    width: 100px; padding: 8px;
+    border: 2px solid var(--stamp-border);
+    background: var(--paper);
+    box-shadow: 2px 2px 0 var(--paper-dark);
+    text-align: center;
+  }
+
+  .stamp-inner {
+    border: 1px dashed var(--stamp-border);
+    padding: 0.6rem 0.4rem;
+  }
+
+  .stamp-place {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--ink); line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+
+  .stamp-country {
+    font-family: 'Inconsolata', monospace; font-size: 0.5rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .stamp-date {
+    font-family: 'Inconsolata', monospace; font-size: 0.55rem;
+    color: var(--terracotta); margin-top: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  .postmark {
+    width: 60px; height: 60px; border-radius: 50%;
+    border: 1.5px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    transform: rotate(-15deg);
+  }
+
+  .postmark span {
+    font-family: 'Inconsolata', monospace; font-size: 0.48rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-light); text-align: center; line-height: 1.5;
+  }
+
+  /* Content */
+  .postcard-content {}
+
+  .postcard-place {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--ink);
+    line-height: 1; margin-bottom: 0.4rem;
+    margin-top: 0;
+  }
+
+  .postcard-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1rem;
+    color: var(--terracotta); margin-bottom: 1.5rem;
+  }
+
+  .postcard-text {
+    font-size: 0.95rem; color: var(--ink-mid);
+    line-height: 1.9; margin-bottom: 1rem; font-weight: 300;
+  }
+
+  /* Photo grid */
+  .photo-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem; margin-top: 1.5rem;
+  }
+
+  .photo-slot {
+    aspect-ratio: 4/3; background: var(--paper);
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+
+  .photo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .photo-slot .photo-placeholder {
+    font-family: 'Inconsolata', monospace; font-size: 0.58rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--rule);
+  }
+
+  /* ── PLACES GRID ── */
+  .places-list {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem; padding-top: 2.5rem;
+  }
+
+  .place-card {
+    background: var(--paper); border: 1px solid var(--rule);
+    padding: 1.2rem; transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .place-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44,36,22,0.08);
+  }
+
+  .place-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+
+  .place-card-country {
+    font-family: 'Inconsolata', monospace; font-size: 0.62rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-light); margin-bottom: 0.5rem;
+  }
+
+  .place-card-date {
+    font-family: 'Inconsolata', monospace; font-size: 0.6rem;
+    letter-spacing: 0.05em; color: var(--terracotta);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--rule);
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 0.95rem; color: var(--ink);
+  }
+
+  .footer-note {
+    font-family: 'Inconsolata', monospace; font-size: 0.62rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+  .hero-left { animation: fadeUp 0.8s ease both; }
+  .hero-right { animation: fadeUp 0.8s 0.2s ease both; }
+  .reveal { opacity: 0; transform: translateY(8px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero-content { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+    .section-header { padding: 1.5rem 1.5rem 1rem; }
+    .section-body { padding: 0 1.5rem 3rem; }
+    .postcard { grid-template-columns: 1fr; gap: 1.5rem; }
+    .postcard-stamp-col { flex-direction: row; align-items: flex-start; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">Postcards from Time</a>
+  <ul class="nav-links">
+    <li><a href="#trips">Trips</a></li>
+    <li><a href="#places">Places</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <p class="hero-eyebrow">A travel record</p>
+      <h1 class="hero-title">Postcards<br><em>from Time</em></h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">Places visited, things noticed, moments kept.</p>
+      <div class="hero-count">
+        <div class="count-item">
+          <div class="count-num">4</div>
+          <div class="count-label">Places</div>
+        </div>
+        <div class="count-item">
+          <div class="count-num">4</div>
+          <div class="count-label">Trips</div>
+        </div>
+        <div class="count-item">
+          <div class="count-num">4</div>
+          <div class="count-label">Countries</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIPS -->
+<div class="page-section" id="trips">
+  <div class="section-header">
+    <span class="section-title">Trips</span>
+    <span class="section-note">Most recent first</span>
+  </div>
+  <div class="section-body">
+    <div class="reveal">
+
+      <!-- Helsinki -->
+      <div class="postcard">
+        <div class="postcard-stamp-col">
+          <div class="stamp">
+            <div class="stamp-inner">
+              <img src="helsinkistamp.jpg" alt="Helsinki" style="width:100%;height:auto;display:block;">
+            </div>
+          </div>
+          <div class="postmark"><span>Finland<br>2026</span></div>
+        </div>
+        <div class="postcard-content">
+          <div class="postcard-place">Helsinki</div>
+          <div class="postcard-tagline">Frozen sea, tram rides at sunset, salmon soup</div>
+          <p class="postcard-text">The first day a friend who lives in Finland took me around — Kiasma and the modern art galleries, and the salmon soup which is as good as everyone says. Then a ferry across a frozen sea to Suomenlinna, the sea fortress island. The water was solid. It felt surreal.</p>
+          <p class="postcard-text">The second day I explored on my own. I took a tram ride across the city at sunset — the roads were icy and there was snow underfoot, but the sun was out and the skies were extraordinary. Cold and warm at the same time. Helsinki does that.</p>
+          <div class="photo-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="photo-slot"><img src="hel1.jpg" alt="Helsinki"></div>
+            <div class="photo-slot"><img src="hel2.jpg" alt="Helsinki"></div>
+            <div class="photo-slot"><img src="hel3.jpg" alt="Helsinki"></div>
+            <div class="photo-slot"><img src="hel4.jpg" alt="Helsinki"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cambridge -->
+      <div class="postcard">
+        <div class="postcard-stamp-col">
+          <div class="stamp">
+            <div class="stamp-inner">
+              <img src="cambridgestamp.jpg" alt="Cambridge" style="width:100%;height:auto;display:block;">
+            </div>
+          </div>
+          <div class="postmark"><span>United<br>Kingdom<br>2026</span></div>
+        </div>
+        <div class="postcard-content">
+          <div class="postcard-place">Cambridge</div>
+          <div class="postcard-tagline">Unexpected snow, second-hand books, a solo wander</div>
+          <p class="postcard-text">A solo two-day trip, starting with a delayed train that gave me more time in transit than planned. Stayed at the YHA which was good. Spent the days wandering — museums, bookshops, and picked up a few books on poetry and classic literature along the way.</p>
+          <p class="postcard-text">The second day started rainy but mid-afternoon the rain turned to snow, suddenly and briefly. One of those unexpected moments that makes a trip memorable. Somewhere there are photos and videos of that.</p>
+          <div class="photo-grid">
+            <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
+            <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
+            <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rome -->
+      <div class="postcard">
+        <div class="postcard-stamp-col">
+          <div class="stamp">
+            <div class="stamp-inner">
+              <img src="romestamp.jpg" alt="Rome" style="width:100%;height:auto;display:block;">
+            </div>
+          </div>
+          <div class="postmark"><span>Italia<br>2024</span></div>
+        </div>
+        <div class="postcard-content">
+          <div class="postcard-place">Rome</div>
+          <div class="postcard-tagline">Fountains, gelato, and two thousand years of history</div>
+          <p class="postcard-text">Rome is monumental in every sense. The Trevi Fountain, Piazza Navona — places you've seen in pictures a hundred times that still manage to stop you when you're standing in front of them.</p>
+          <p class="postcard-text">But what stays with me is the smaller things. Really good bread with cheese and sundried tomatoes. Loads of gelato. The way food in Rome feels unhurried and just right.</p>
+          <div class="photo-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="photo-slot"><img src="rome1.jpg" alt="Rome"></div>
+            <div class="photo-slot"><img src="rome2.jpg" alt="Rome"></div>
+            <div class="photo-slot"><img src="rome3.jpg" alt="Rome"></div>
+            <div class="photo-slot"><img src="rome4.jpg" alt="Rome"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vatican City -->
+      <div class="postcard">
+        <div class="postcard-stamp-col">
+          <div class="stamp">
+            <div class="stamp-inner">
+              <img src="vatstamp.jpg" alt="Vatican City" style="width:100%;height:auto;display:block;">
+            </div>
+          </div>
+          <div class="postmark"><span>Vatican<br>2024</span></div>
+        </div>
+        <div class="postcard-content">
+          <div class="postcard-place">Vatican City</div>
+          <div class="postcard-tagline">St. Peter's, the Sistine Chapel, and a sense of scale</div>
+          <p class="postcard-text">The smallest country in the world, visited on the same trip as Rome. St. Peter's Basilica, the Sistine Chapel — places that make you feel very small in the best possible way.</p>
+          <div class="photo-grid">
+            <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
+            <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
+            <div class="photo-slot"><span class="photo-placeholder">photo</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PLACES -->
+<div class="page-section" id="places">
+  <div class="section-header">
+    <span class="section-title">Places</span>
+    <span class="section-note">Everywhere so far</span>
+  </div>
+  <div class="section-body">
+    <div class="places-list reveal">
+      <div class="place-card">
+        <div class="place-card-name">Helsinki</div>
+        <div class="place-card-country">Finland</div>
+        <div class="place-card-date">Mar 2026</div>
+      </div>
+      <div class="place-card">
+        <div class="place-card-name">Cambridge</div>
+        <div class="place-card-country">England · UK</div>
+        <div class="place-card-date">Feb 2026</div>
+      </div>
+      <div class="place-card">
+        <div class="place-card-name">Rome</div>
+        <div class="place-card-country">Italy</div>
+        <div class="place-card-date">Sep 2024</div>
+      </div>
+      <div class="place-card">
+        <div class="place-card-name">Vatican City</div>
+        <div class="place-card-country">Vatican City State</div>
+        <div class="place-card-date">Sep 2024</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">Postcards from Time</span>
+  <span class="footer-note">Updated as I go</span>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
