@@ -4,17 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bench & Books</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T65KSGYK3C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-T65KSGYK3C');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bench & Books</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -58,13 +47,19 @@
   }
 
   .nav-brand {
-    display: flex; align-items: center;
+    display: flex; align-items: center; gap: 0.75rem;
     background: var(--ink); color: var(--paper);
     padding: 0 1.8rem;
     font-family: 'Libre Baskerville', serif;
     font-size: 1rem; font-style: italic;
     text-decoration: none; letter-spacing: 0.01em;
     margin-right: 2rem; white-space: nowrap;
+  }
+
+  .nav-photo {
+    width: 30px; height: 30px; border-radius: 50%;
+    object-fit: cover; border: 1.5px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
   }
 
   .nav-links { display: flex; gap: 0; list-style: none; align-items: center; flex: 1; }
@@ -193,37 +188,17 @@
   }
 
   /* ── ABOUT ── */
-  .about-grid { display: grid; grid-template-columns: 200px 1fr; gap: 3.5rem; align-items: start; }
-
-  .about-photo {
-    aspect-ratio: 3/4; background: var(--paper-dark);
-    border: 1px solid var(--rule); position: relative;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  .about-photo::after {
-    content: 'photo'; font-family: 'Inconsolata', monospace;
-    font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--rule);
-  }
-
-  .about-photo .photo-label {
-    position: absolute; bottom: -1px; left: -1px; right: -1px;
-    background: var(--teal); color: var(--paper);
-    font-family: 'Inconsolata', monospace; font-size: 0.6rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.3rem 0.6rem; text-align: center;
-  }
-
   .about-text p {
-    font-size: 0.95rem; color: var(--ink-mid);
+    font-size: 1.1rem; color: var(--ink-mid);
     line-height: 1.9; margin-bottom: 1rem; font-weight: 300;
+    max-width: 680px;
   }
 
   .about-text p.lead {
     font-family: 'Libre Baskerville', serif;
-    font-size: 1.1rem; font-style: italic; color: var(--ink);
+    font-size: 1.3rem; font-style: italic; color: var(--ink);
     font-weight: 400; line-height: 1.7; margin-bottom: 1.2rem;
+    max-width: 680px;
   }
 
   /* ── BOOKS ── */
@@ -237,6 +212,7 @@
   .books-table tbody tr {
     border-bottom: 1px dashed var(--rule); transition: background 0.15s;
   }
+  .books-table tbody tr.row-reading { background: rgba(42,95,130,0.07); }
   .books-table tbody tr:hover { background: var(--teal-dim); }
   .books-table td { padding: 0.9rem 0; font-size: 0.92rem; vertical-align: middle; }
 
@@ -467,7 +443,7 @@
 <nav>
   <a class="nav-brand" href="#">Bench &amp; Books</a>
   <ul class="nav-links">
-    <li><a href="#about">Who? What?</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#books">Books</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#courses">Courses</a></li>
@@ -484,11 +460,6 @@
   </div>
   <div class="hero-content">
     <h1 class="hero-title">Bench<br><span class="amp">&amp;</span> Books</h1>
-    <div class="hero-ruled">
-      <div>
-        <p class="hero-desc">Part notebook, part archive, part experiment. Life moves fast and this is my attempt to document it. The projects being built, the books being read, the physics being slowly understood, and the questions that won't go away. A quiet corner of the internet where all of it finds a home. No particular agenda. Just curiosity, documented.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -497,7 +468,7 @@
   <div class="section-margin"><span class="section-num">§01</span></div>
   <div class="section-content">
     <div class="section-header-row">
-      <h2 class="section-title">Who? What?</h2>
+      <h2 class="section-title">About Who?</h2>
     </div>
     <div class="reveal" style="display:grid; grid-template-columns: 1fr 200px; gap: 2rem; align-items: start; max-width: 700px;">
       <div class="about-text">
@@ -527,54 +498,45 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="book-title-cell">The Order of Time</td>
-            <td class="book-author-cell">Carlo Rovelli</td>
-            <td class="book-cat-cell">Popular Science</td>
-            <td><span class="status-mark reading">Reading</span></td>
-          </tr>
-          <tr>
-            <td class="book-title-cell">The Science of Interstellar</td>
-            <td class="book-author-cell">Kip Thorne</td>
-            <td class="book-cat-cell">Popular Science</td>
-            <td><span class="status-mark reading">Reading</span></td>
-          </tr>
-          <tr>
-            <td class="book-title-cell">Chip War</td>
-            <td class="book-author-cell">Chris Miller</td>
-            <td class="book-cat-cell">Technology</td>
-            <td><span class="status-mark next">Paused</span></td>
-          </tr>
-          <tr>
-            <td class="book-title-cell">Seveneves</td>
-            <td class="book-author-cell">Neal Stephenson</td>
-            <td class="book-cat-cell">Science Fiction</td>
-            <td><span class="status-mark next">Paused</span></td>
-          </tr>
-          <tr>
-            <td class="book-title-cell">Asimov's New Guide to Science</td>
-            <td class="book-author-cell">Isaac Asimov</td>
-            <td class="book-cat-cell">Popular Science</td>
-            <td><span class="status-mark next">Planned</span></td>
-          </tr>
-          <tr>
-            <td class="book-title-cell">Persuasion</td>
-            <td class="book-author-cell">Jane Austen</td>
-            <td class="book-cat-cell">Classic Fiction</td>
-            <td><span class="status-mark reading">Reading</span></td>
-          </tr>
-          <tr>
-            <td class="book-title-cell">Harry Potter and the Sorcerer's Stone</td>
-            <td class="book-author-cell">J.K. Rowling</td>
-            <td class="book-cat-cell">Fantasy</td>
-            <td><span class="status-mark reading">Reading</span></td>
-          </tr>
-          <tr>
-            <td class="book-title-cell">Harry Potter and the Deathly Hallows</td>
-            <td class="book-author-cell">J.K. Rowling</td>
-            <td class="book-cat-cell">Fantasy</td>
-            <td><span class="status-mark done">Done</span></td>
-          </tr>
+          <tr class="row-reading"><td class="book-title-cell">The Order of Time</td><td class="book-author-cell">Carlo Rovelli</td><td class="book-cat-cell">Popular Science (Physics)</td><td><span class="status-mark reading">Reading</span></td></tr>
+          <tr class="row-reading"><td class="book-title-cell">The Science of Interstellar</td><td class="book-author-cell">Kip Thorne</td><td class="book-cat-cell">Popular Science (Physics)</td><td><span class="status-mark reading">Reading</span></td></tr>
+          <tr class="row-reading"><td class="book-title-cell">Persuasion</td><td class="book-author-cell">Jane Austen</td><td class="book-cat-cell">Fiction (Classic)</td><td><span class="status-mark reading">Reading</span></td></tr>
+          <tr class="row-reading"><td class="book-title-cell">Harry Potter and the Sorcerer's Stone</td><td class="book-author-cell">J.K. Rowling</td><td class="book-cat-cell">Fantasy (Magic)</td><td><span class="status-mark reading">Reading</span></td></tr>
+          <tr class="row-reading"><td class="book-title-cell">Chip War</td><td class="book-author-cell">Chris Miller</td><td class="book-cat-cell">Engineering (Technology)</td><td><span class="status-mark next">Paused</span></td></tr>
+          <tr class="row-reading"><td class="book-title-cell">Seveneves</td><td class="book-author-cell">Neal Stephenson</td><td class="book-cat-cell">Science Fiction (Biology)</td><td><span class="status-mark next">Paused</span></td></tr>
+          <tr class="row-done"><td class="book-title-cell">Harry Potter and the Deathly Hallows</td><td class="book-author-cell">J.K. Rowling</td><td class="book-cat-cell">Fantasy (Magic)</td><td><span class="status-mark done">Read</span></td></tr>
+          <tr class="row-done"><td class="book-title-cell">Project Hail Mary</td><td class="book-author-cell">Andy Weir</td><td class="book-cat-cell">Science Fiction (Chemistry)</td><td><span class="status-mark done">Read</span></td></tr>
+          <tr class="row-done"><td class="book-title-cell">Days at the Morisaki Bookshop</td><td class="book-author-cell">Satoshi Yagisawa</td><td class="book-cat-cell">Fiction (Japanese)</td><td><span class="status-mark done">Read</span></td></tr>
+          <tr class="row-done"><td class="book-title-cell">Artemis</td><td class="book-author-cell">Andy Weir</td><td class="book-cat-cell">Science Fiction (Mixed)</td><td><span class="status-mark done">Read</span></td></tr>
+          <tr class="row-done"><td class="book-title-cell">The God of Small Things</td><td class="book-author-cell">Arundhati Roy</td><td class="book-cat-cell">Fiction (Literary)</td><td><span class="status-mark done">Read</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Asimov's New Guide to Science</td><td class="book-author-cell">Isaac Asimov</td><td class="book-cat-cell">Popular Science (General)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Three-Body Problem</td><td class="book-author-cell">Liu Cixin</td><td class="book-cat-cell">Science Fiction (Physics)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Blindsight</td><td class="book-author-cell">Peter Watts</td><td class="book-cat-cell">Science Fiction (Biology)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Left Hand of Darkness</td><td class="book-author-cell">Ursula K. Le Guin</td><td class="book-cat-cell">Science Fiction (Social)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Hyperion</td><td class="book-author-cell">Dan Simmons</td><td class="book-cat-cell">Science Fiction (Mixed)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Name of the Wind</td><td class="book-author-cell">Patrick Rothfuss</td><td class="book-cat-cell">Fantasy (Epic)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Jonathan Strange &amp; Mr Norrell</td><td class="book-author-cell">Susanna Clarke</td><td class="book-cat-cell">Fantasy (Historical)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Way of Kings</td><td class="book-author-cell">Brandon Sanderson</td><td class="book-cat-cell">Fantasy (Epic)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Strange Weather in Tokyo</td><td class="book-author-cell">Hiromi Kawakami</td><td class="book-cat-cell">Fiction (Japanese)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Kafka on the Shore</td><td class="book-author-cell">Haruki Murakami</td><td class="book-cat-cell">Fiction (Japanese)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Before the Coffee Gets Cold</td><td class="book-author-cell">Toshikazu Kawaguchi</td><td class="book-cat-cell">Fiction (Japanese)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Devotion of Suspect X</td><td class="book-author-cell">Keigo Higashino</td><td class="book-cat-cell">Fiction (Japanese)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Surely You're Joking, Mr. Feynman</td><td class="book-author-cell">Richard Feynman</td><td class="book-cat-cell">Popular Science (Physics)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Seven Brief Lessons on Physics</td><td class="book-author-cell">Carlo Rovelli</td><td class="book-cat-cell">Popular Science (Physics)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Elegant Universe</td><td class="book-author-cell">Brian Greene</td><td class="book-cat-cell">Popular Science (Physics)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Making of the Atomic Bomb</td><td class="book-author-cell">Richard Rhodes</td><td class="book-cat-cell">Popular Science (History)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Gödel, Escher, Bach</td><td class="book-author-cell">Douglas Hofstadter</td><td class="book-cat-cell">Mathematics (Philosophy)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Man Who Loved Only Numbers</td><td class="book-author-cell">Paul Hoffman</td><td class="book-cat-cell">Mathematics (Biography)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">How to Solve It</td><td class="book-author-cell">George Pólya</td><td class="book-cat-cell">Mathematics (Problem Solving)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Soul of a New Machine</td><td class="book-author-cell">Tracy Kidder</td><td class="book-cat-cell">Engineering (Computing)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Ignition!</td><td class="book-author-cell">John D. Clark</td><td class="book-cat-cell">Engineering (Rocketry)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Skunk Works</td><td class="book-author-cell">Ben Rich</td><td class="book-cat-cell">Engineering (Aerospace)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Zen and the Art of Motorcycle Maintenance</td><td class="book-author-cell">Robert M. Pirsig</td><td class="book-cat-cell">Philosophy (Technology)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Structure of Scientific Revolutions</td><td class="book-author-cell">Thomas Kuhn</td><td class="book-cat-cell">Philosophy (Science)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">Meditations</td><td class="book-author-cell">Marcus Aurelius</td><td class="book-cat-cell">Philosophy (Stoicism)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Shadow of the Wind</td><td class="book-author-cell">Carlos Ruiz Zafón</td><td class="book-cat-cell">Fiction (Literary)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">A Gentleman in Moscow</td><td class="book-author-cell">Amor Towles</td><td class="book-cat-cell">Fiction (Literary)</td><td><span class="status-mark next">Planned</span></td></tr>
+          <tr class="row-planned"><td class="book-title-cell">The Hitchhiker's Guide to the Galaxy</td><td class="book-author-cell">Douglas Adams</td><td class="book-cat-cell">Fiction (Literary)</td><td><span class="status-mark next">Planned</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -678,9 +640,47 @@
   </div>
 </div>
 
-<!-- 06 CONTACT -->
-<div class="notebook-section" id="contact">
+<!-- 06 BOOK REFLECTIONS -->
+<div class="notebook-section" id="reflections">
   <div class="section-margin"><span class="section-num">§06</span></div>
+  <div class="section-content">
+    <div class="section-header-row">
+      <h2 class="section-title">Book Reflections</h2>
+    </div>
+    <div class="reveal">
+      <div class="note-row">
+        <div class="note-date">Apr 2026</div>
+        <div>
+          <div class="note-title">Days at the Morisaki Bookshop</div>
+          <div class="note-excerpt">Days at the Morisaki Bookshop was my first Japanese book and I listened to it on YouTube. It's not a moving book, and the story itself is simple. But that's exactly the beauty of it. There's a warmth to it that stays with you. Listening to it made me want to go to Japan. I would like to visit Tokyo, but also the countryside. A mountain hike, a warm meal somewhere small. Japan is on my list of places to visit, and hopefully I make a trip there soon.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 LEARNING LOG -->
+<div class="notebook-section" id="log">
+  <div class="section-margin"><span class="section-num">§07</span></div>
+  <div class="section-content">
+    <div class="section-header-row">
+      <h2 class="section-title">Learning Log</h2>
+    </div>
+    <div class="reveal">
+      <div class="note-row">
+        <div class="note-date">Apr 2026</div>
+        <div>
+          <div class="note-title">Building my first website</div>
+          <div class="note-excerpt">Built and published my first website today. Learned what GitHub is, how to use it, and what HTML is actually for. I made the design decisions and wrote the content and used AI for writing the HTML code. It was far less complicated than I expected. I also enjoyed the process a lot. It was my first time with Github and HTML.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 CONTACT -->
+<div class="notebook-section" id="contact">
+  <div class="section-margin"><span class="section-num">§08</span></div>
   <div class="section-content">
     <div class="section-header-row">
       <h2 class="section-title">Contact</h2>
